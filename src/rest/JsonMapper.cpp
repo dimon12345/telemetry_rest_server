@@ -23,8 +23,8 @@ json JsonMapper::mapSensorsData(const std::vector<SensorDataEntity> &sensors_dat
 
     for (auto &data : sensors_data) {
         json data_result;
-        data_result["value_id"] = data.value_id;
-        data_result["name_id"] = data.name_id;
+        data_result["valueId"] = data.value_id;
+        data_result["nameId"] = data.name_id;
         data_result["value"] = data.value;
         data_result["timestamp"] = data.timestamp;
         results.push_back(std::move(data_result));
