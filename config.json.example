@@ -1,0 +1,7 @@
+{
+    "pg": {
+        "host": "r3",
+        "user": "lexx",
+        "password": "xev"
+    }
+}
