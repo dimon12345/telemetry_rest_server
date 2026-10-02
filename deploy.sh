@@ -4,7 +4,7 @@ set -ex
 echo "Deploy REST server"
 cd "$(dirname "$(readlink -f "$0")")"
 
-./build.sh
+DISABLE_START_SERVER=1 ./build.sh
 
 SERVICE_NAME="telemetry_rest.service"
 SERVICE_ETC_FILENAME="/etc/systemd/system/$SERVICE_NAME"
