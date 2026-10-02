@@ -1,0 +1,13 @@
+[Unit]
+Description=Telemetry REST server
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=idle
+ExecStart=/opt/telemetry/rest_server/build/rest_server -c /opt/telemetry/config/rest.json
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

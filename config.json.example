@@ -1,6 +1,6 @@
 {
     "pg": {
-        "host": "r3",
+        "host": "pg-host",
         "user": "lexx",
         "password": "xev"
     }
