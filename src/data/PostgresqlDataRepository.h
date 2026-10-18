@@ -7,7 +7,7 @@
 
 class PostgresqlDataRepository : public DataRepository {
 public:
-    PostgresqlDataRepository(const class Config &config);
+    PostgresqlDataRepository(const class ConfigOld &config_old);
     std::vector<SensorEntity> getSensors() override;
     std::vector<SensorDataEntity> getSensorsData(int seconds) override;
 

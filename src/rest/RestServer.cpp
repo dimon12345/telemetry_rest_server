@@ -1,6 +1,6 @@
 #include "crow.h"
 
-#include "Config.h"
+#include "ConfigOld.h"
 #include "RestServer.h"
 #include "JsonMapper.h"
 #include "data/PostgresqlDataRepository.h"
@@ -18,7 +18,7 @@ int RestServer::run() {
     crow::SimpleApp app;
     JsonMapper jsonMapper;
 
-    PostgresqlDataRepository postgresqlDataRepository(config_);
+    PostgresqlDataRepository postgresqlDataRepository(config_old_);
     GetSensorsUseCase getSensorsUseCase(postgresqlDataRepository);
     GetDataForIntervalUseCase getDataForIntervalUseCase(postgresqlDataRepository);
 

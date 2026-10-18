@@ -3,12 +3,12 @@
 #include <argparse.hpp>
 #include <nlohmann/json.hpp>
 
-#include "ArgParseConfig.h"
+#include "ArgParseConfigOld.h"
 
 
 namespace {
     const std::string AppName = "Telemetry REST server";
-    const std::string DefaultConfigFilename = "config.json";
+    const std::string DefaultConfigFilename = "config_old.json";
 
     void parse_arguments(argparse::ArgumentParser &program,
                                 int argc, char **argv) {
@@ -20,7 +20,7 @@ namespace {
     }
 }
 
-ArgParseConfig::ArgParseConfig(int argc, char **argv) {
+ArgParseConfigOld::ArgParseConfigOld(int argc, char **argv) {
     argparse::ArgumentParser program(AppName);
     ::parse_arguments(program, argc, argv);
 
@@ -44,7 +44,7 @@ ArgParseConfig::ArgParseConfig(int argc, char **argv) {
 }
 
 
-void ArgParseConfig::validate() {
+void ArgParseConfigOld::validate() {
     if (pg_host.empty()) {
         throw std::runtime_error("PostgreSQL host is empty");
     }

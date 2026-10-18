@@ -2,10 +2,10 @@
 
 class RestServer {
 public:
-    RestServer(const class Config &config) : config_(config) {}
+    RestServer(const class ConfigOld &config_old) : config_old_(config_old) {}
 
     int run();
 
 private:
-    const class Config &config_;
+    const class ConfigOld &config_old_;
 };
