@@ -39,17 +39,21 @@ std::vector<SensorEntity> PostgresqlDataRepository::getSensors() {
 
 std::vector<SensorDataEntity> PostgresqlDataRepository::getSensorsData(int seconds) {
     pqxx::work txn(*connection_);
-    pqxx::result res = txn.exec_params("SELECT value_id,name_id,value,to_char(timestamp AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as formatted_timestamp from telemetry where timestamp >= NOW() - ($1 * INTERVAL '1 second');", seconds);
+    pqxx::result res = txn.exec_params(
+            "SELECT id,sensor_id,value,to_char(timestamp AT TIME ZONE 'UTC', "
+            "'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as formatted_timestamp from "
+            "telemetry where timestamp >= NOW() - ($1 * INTERVAL '1 second');",
+            seconds);
 
     std::vector<SensorDataEntity> result;
     result.reserve(res.size());
 
     for (auto const &row: res) {
-        int value_id = row["value_id"].as<int>();
-        int name_id = row["name_id"].as<int>();
+        int id = row["id"].as<int>();
+        int sensor_id = row["sensor_id"].as<int>();
         double value = row["value"].as<double>();
         std::string timestamp = row["formatted_timestamp"].as<std::string>();
-        result.emplace_back(SensorDataEntity{value_id, name_id, value, timestamp});
+        result.emplace_back(SensorDataEntity{id, sensor_id, value, timestamp});
     }
 
     return result;

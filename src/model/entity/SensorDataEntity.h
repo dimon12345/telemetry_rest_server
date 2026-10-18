@@ -4,8 +4,8 @@
 
 
 struct SensorDataEntity {
-    int value_id;
-    int name_id;
+    int id;
+    int sensor_id;
     double value;
     std::string timestamp;
 };
